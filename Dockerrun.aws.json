@@ -1,0 +1,15 @@
+{
+"AWSEBDockerrunVersion":2,
+"containerDefinitions": [
+{
+ "name":"client",
+ "image":"zkrichen/multi-client"
+ "hostname" :"client",
+ "essential": false
+}
+
+
+]
+
+
+}

@@ -2,7 +2,7 @@ sudo: required
 services:
 - docker
  
- before_install:
+before_install:
   - docker build -t zkrichen/react-test -f ./client/Dockerfile.dev ./client
 script:
  - docker run -e CI=true zkrichen/react-test npm test

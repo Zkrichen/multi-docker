@@ -1,21 +1,19 @@
 sudo: required
 services:
- - docker
+- docker
  
-before_install:
- - docker build -t zkrichen/react-test -f ./client/Dockerfile.dev ./client
-
+ before_install:
+  - docker build -t zkrichen/react-test -f ./client/Dockerfile.dev ./client
 script:
  - docker run -e CI=true zkrichen/react-test npm test
- 
- after_success:
-  -docker build -t zkrichen/multi-client ./client
-  -docker build -t zkrichen/multi-nginx ./nginx
-  -docker build -t zkrichen/multi-server ./server
-  -docker build -t zkrichen/multi-worker ./worker
- #log in to the docker CLI
- - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
- - docker push zkrichen/multi-client
- - docker push zkrichen/multi-nginx
- - docker push zkrichen/multi-server
- - docker push zkrichen/multi-worker
+
+after_success:
+  - docker build -t zkrichen/multi-client ./client
+  - docker build -t zkrichen/multi-nginx ./nginx
+  - docker build -t zkrichen/multi-server ./server
+  - docker build -t zkrichen/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push zkrichen/multi-client
+  - docker push zkrichen/multi-nginx
+  - docker push zkrichen/multi-server
+  - docker push zkrichen/multi-worker
